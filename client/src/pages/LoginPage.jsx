@@ -3,6 +3,7 @@ import Login from '../components/login/Login';
 
 function LoginPage() {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,6 +16,7 @@ function LoginPage() {
 
         const dbDataJson = await dbData.json();
         setData(dbDataJson);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -26,7 +28,7 @@ function LoginPage() {
 
   return (
     <div className='tw-flex tw-flex-col tw-items-center'>
-      <Login key={data.id} data={data} />
+      {loading ? <h3>Loading ...</h3> : <Login key={data.id} data={data} />}
     </div>
   );
 }
