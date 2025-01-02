@@ -7,7 +7,7 @@ export function signUpObject(firstName, lastName, email, password1, password2) {
         email: email,
         password: password1,
       };
-      console.log(buildObj);
+      return buildObj;
     } else {
       throw new Error('Passwords do not match');
     }

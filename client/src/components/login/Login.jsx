@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './login.css';
 import { loginObject } from '../../../utils/login';
-import UserHome from '../../pages/UserHome';
 
 function Login(data) {
   const [showPassword, setShowPassword] = useState(false);

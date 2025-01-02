@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './sign-up-modal.css';
 import { signUpObject } from '../../../utils/signUp';
+import axios from 'axios';
 
 function SignUpModal({ showModal, closeModal, showPassword, setShowPassword }) {
   const [firstName, setFirstName] = useState('');
@@ -19,7 +20,14 @@ function SignUpModal({ showModal, closeModal, showPassword, setShowPassword }) {
       password1,
       password2
     );
-    console.log(signUpData);
+    axios
+      .post('http://localhost:3000/api/data', signUpData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(location.reload())
+      .catch((error) => console.error(`Error: ${error}`));
     setPassword1('');
     setPassword2('');
   };
