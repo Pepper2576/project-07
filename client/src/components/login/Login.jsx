@@ -1,22 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SignUpModal from '../signup-modal/SignUpModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './login.css';
 import { loginObject } from '../../../utils/login';
+import UserHome from '../../pages/UserHome';
 
-function Login() {
+function Login(data) {
   const [showPassword, setShowPassword] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+
+  const nav = useNavigate();
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
   const handleLogin = () => {
     const loginData = loginObject(email, password);
-    console.log(loginData);
+    let goodLogIn = false;
+
+    for (let i = 0; i < data.data.length; i++) {
+      if (
+        data.data[i].email === loginData.email &&
+        data.data[i].password === loginData.password
+      ) {
+        goodLogIn = true;
+        nav(`/${data.data[i]._id}`);
+        break;
+      }
+    }
+    if (!goodLogIn) {
+      alert('Incorrect Username or Password');
+    }
     setPassword('');
   };
 

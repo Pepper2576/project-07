@@ -4,7 +4,7 @@ export function loginObject(email, password) {
       email: email,
       password: password,
     };
-    return JSON.stringify(buildObj);
+    return buildObj;
   } catch (error) {
     console.error(error);
   }
