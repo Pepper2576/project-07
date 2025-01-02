@@ -24,8 +24,6 @@ function LoginPage() {
     fetchData();
   }, []);
 
-  console.log('test', data);
-
   return (
     <div className='tw-flex tw-flex-col tw-items-center'>
       {loading ? <h3>Loading ...</h3> : <Login key={data.id} data={data} />}
